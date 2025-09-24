@@ -624,7 +624,7 @@ const speedControl = document.getElementById("speed");
 const leftpyty = document.querySelector("#leftpyty button")
 const rightpyth = document.querySelector("#rightpyth button")
 
-const vpth = ["te.mp4" , "kh.mp4"]
+const vpth = ["sh.mp4" , "kh.mp4"]
 
 let vkth = video.src[0]
 
