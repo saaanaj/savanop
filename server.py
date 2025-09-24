@@ -300,3 +300,35 @@
 
 # server.py
 # server.py
+
+
+import requests
+
+url = "https://api.freeapi.app/api/v1/public/randomusers"
+
+try:
+    respon = requests.get(url)
+    kyt = respon.json()
+    if kyt["statusCode"] == 200:
+        print("this code now working")
+        LET = kyt["data"]["page"]
+        sey = kyt["data"]["data"][0]
+
+        newyt = {
+          "gender" : sey["gender"] ,
+          "title": sey["name"]["title"],
+          "location" : sey["location"]["street"]["name"] ,
+          "city" : sey["location"]["coordinates"]["latitude"] ,
+          "email"  : sey["email"],
+          "login" : sey["login"]["username"] ,
+          "password" : sey["login"]["password"]
+        }
+
+        print(LET , newyt)
+    else:
+        print("i see error in the code")
+
+except requests.exceptions.RequestException as e:
+    print(f"this is error in your code {e}")
+
+

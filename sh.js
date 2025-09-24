@@ -657,3 +657,21 @@ rightpyth.addEventListener("click" ,  () => {
 speedControl.addEventListener("change", () => {
     video.playbackRate = speedControl.value;
 });
+
+const apitech = document.querySelector("#apigetresut")
+const getapidata = document.querySelector("#btnojapi button")
+
+const url = "https://api.freeapi.app/api/v1/public/randomusers";
+
+async function getusers() {
+  try{
+    let rep = await fetch(url);
+    let dataps = await rep.json()
+    apitech.innerHTML = `this is data ${JSON.stringify(dataps)}`
+  }
+  catch  (error) {
+    apitech.innerHTML = `this is error bro ${error}`
+  }
+}
+
+getapidata.addEventListener("click" , () => getusers())
