@@ -304,31 +304,54 @@
 
 import requests
 
-url = "https://api.freeapi.app/api/v1/public/randomusers"
+# url = "https://api.freeapi.app/api/v1/public/randomusers"
 
-try:
-    respon = requests.get(url)
-    kyt = respon.json()
-    if kyt["statusCode"] == 200:
-        print("this code now working")
-        LET = kyt["data"]["page"]
-        sey = kyt["data"]["data"][0]
+# try:
+#     respon = requests.get(url)
+#     kyt = respon.json()
+#     if kyt["statusCode"] == 200:
+#         print("this code now working")
+#         LET = kyt["data"]["page"]
+#         sey = kyt["data"]["data"][0]
 
-        newyt = {
-          "gender" : sey["gender"] ,
-          "title": sey["name"]["title"],
-          "location" : sey["location"]["street"]["name"] ,
-          "city" : sey["location"]["coordinates"]["latitude"] ,
-          "email"  : sey["email"],
-          "login" : sey["login"]["username"] ,
-          "password" : sey["login"]["password"]
-        }
+#         newyt = {
+#           "gender" : sey["gender"] ,
+#           "title": sey["name"]["title"],
+#           "location" : sey["location"]["street"]["name"] ,
+#           "city" : sey["location"]["coordinates"]["latitude"] ,
+#           "email"  : sey["email"],
+#           "login" : sey["login"]["username"] ,
+#           "password" : sey["login"]["password"]
+#         }
 
-        print(LET , newyt)
-    else:
-        print("i see error in the code")
+#         print(LET , newyt)
+#     else:
+#         print("i see error in the code")
 
+# except requests.exceptions.RequestException as e:
+#     print(f"this is error in your code {e}")
+
+
+import json
+
+url2 = "https://api.freeapi.app/api/v1/public/youtube/playlists/PLRAV69dS1uWSx4erHGq8hW_GE-Eaj60r-"
+
+
+# ktr = requests.get(url2)
+
+# uyr = ktr.json()
+
+# kyty = json.dumps(uyr, indent=4)
+
+# with open("output.txt" , "w") as f:
+#     f.write(kyty)
+
+try: 
+    ktr = requests.get(url2)
+    upr = ktr.json()
+    kyty = json.dumps(upr , indent=6) 
+    with open("net.txt" , "w") as f:
+        f.write(kyty)
 except requests.exceptions.RequestException as e:
-    print(f"this is error in your code {e}")
-
-
+    with open("error.txt" , "w") as f:
+        f.write(e)

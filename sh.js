@@ -660,14 +660,51 @@ speedControl.addEventListener("change", () => {
 
 const apitech = document.querySelector("#apigetresut")
 const getapidata = document.querySelector("#btnojapi button")
+const idgetplaylist = document.querySelector("#idgetplaylist button")
 
 const url = "https://api.freeapi.app/api/v1/public/randomusers";
+const url2y = "https://api.freeapi.app/api/v1/public/youtube/playlists/PLRAV69dS1uWSx4erHGq8hW_GE-Eaj60r-"
+
+async function getplaylist() {
+  try {
+    let ki = await fetch(url2y)
+    let oht = await ki.json()
+    if (oht.statusCode === 200){
+      let datsy = oht.data
+      apitech.innerHTML = `<pre>this is my new ${JSON.stringify(datsy , null , 4)} </pre>`
+    }
+    else {
+      apitech.innerHTML = `<pre> mother fucking giving me the error ${JSON.stringify(datsy ,null , 2)} </pre>`
+    }
+  }
+  catch (error)   {
+    apitech.innerHTML = `this is the error in code ${error}`
+}
+}
+
+idgetplaylist.addEventListener("click" , () =>  getplaylist())
+
+
+
 
 async function getusers() {
   try{
     let rep = await fetch(url);
     let dataps = await rep.json()
-    apitech.innerHTML = `this is data ${JSON.stringify(dataps)}`
+    if(dataps.statusCode === 200){
+      let kyts = dataps.data
+
+    let objsa =  {
+      page: kyts.page,
+      limit : kyts.limit
+    }
+
+    let yesyt = 
+      apitech.innerHTML = `this is now working and your ${JSON.stringify(objsa)}`
+    }
+    else{
+      apitech.innerHTML = " not a workigng"
+    }
   }
   catch  (error) {
     apitech.innerHTML = `this is error bro ${error}`
