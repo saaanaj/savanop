@@ -712,3 +712,40 @@ async function getusers() {
 }
 
 getapidata.addEventListener("click" , () => getusers())
+
+
+const namekumar = document.querySelector("#namekumar");
+const agekumar = document.querySelector("#agekumar");
+const submitBtnnby = document.querySelector("#submitBtnio")
+const shownrhenerror = document.querySelector("#shownrhenerror")
+
+submitBtnnby.addEventListener("click" , () => {
+  let namewaku = namekumar.value.trim();
+  let agewaku =  agekumar.value.trim();
+
+  if (!namewaku || !agewaku) {
+    shownrhenerror.innerHTML = "Please enter both name and age!";
+    return;
+  }
+
+  let urlytsg = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/post"
+  const datakumar = {
+    name: namewaku ,
+    age: agewaku
+  }
+
+  fetch(urlytsg ,  {
+   method: "POST",
+   headers : { "Content-Type": "application/json" }, 
+   body: JSON.stringify(datakumar)
+  })
+  .then(res => res.json())
+  .then (resultkumar => {
+   shownrhenerror.innerHTML = `sucess fully data post : <pre> ${JSON.stringify(resultkumar , null , 4)} </pre>`
+    namekumar.value = "";
+    agekumar.value = "";
+  })
+  .catch(err => {
+      shownrhenerror.innerHTML = `this is i am getting error <pre> ${JSON.stringify(err , null , 2)} </pre>`
+  })
+ })
