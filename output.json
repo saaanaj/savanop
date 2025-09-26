@@ -1,0 +1,21 @@
+{
+    "statusCode": 200,
+    "data": {
+        "method": "PATCH",
+        "headers": {
+            "connection": "upgrade",
+            "host": "api.freeapi.app",
+            "x-real-ip": "157.49.26.173",
+            "x-forwarded-for": "157.49.26.173",
+            "content-length": "28",
+            "user-agent": "python-requests/2.31.0",
+            "accept-encoding": "gzip, deflate",
+            "accept": "*/*",
+            "content-type": "application/json"
+        },
+        "origin": "::ffff:192.168.48.3",
+        "url": "http://api.freeapi.app/api/v1/kitchen-sink/http-methods/patch"
+    },
+    "message": "PATCH request",
+    "success": true
+}

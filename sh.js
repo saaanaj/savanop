@@ -752,7 +752,7 @@ submitBtnnby.addEventListener("click" , () => {
 
 
 const nmeedit = document.querySelector("#nmeedit")
-const agewaput = document.querySelector("#gewaput")
+const agewaput = document.querySelector("#agewaput")
 const submitwaput = document.querySelector("#submitwaput")
 const showpurest = document.querySelector("#showpurest")
 
@@ -764,16 +764,16 @@ submitwaput.addEventListener("click" , () => {
 
 
 let nameput = nmeedit.value.trim()
-let ageputu = agewaput.value.trim()
+let ageputukr = agewaput.value.trim()
 
-if (!nameput || !ageputu ) {
+if (!nameput || !ageputukr ) {
   showpurest.innerHTML = "please enter anyting bro "
   return
 }
 
 let putdata = {
   name: nameput , 
-  age : ageputu
+  age : ageputukr
 }
 
 fetch(urlput , {
@@ -792,3 +792,81 @@ body : JSON.stringify(putdata)
   showpurest.innerHTML = `this is error is show in your code ${JSON.stringify(error , null , 4)} `
 })
 })
+
+const patchname = document.querySelector("#patchname")
+const patchage = document.querySelector("#patchage")
+const sunmitoatch = document.querySelector("#sunmitoatch")
+const showpatchresult = document.querySelector("#showpatchresult")
+
+let urlpatch = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/patch"
+
+sunmitoatch.addEventListener("click" , () =>  {
+let  nmaepatch = patchname.value.trim();
+let agepatwach = patchage.value.trim();
+
+if (!nmaepatch || !agepatwach ) {
+  showpatchresult.innerHTML = "fill krdo phle bsdk uske baad click kreo"
+}
+let patchdata = {
+  name: nmaepatch
+}
+fetch(urlpatch , {
+  method: "PATCH" ,
+  headers:  { "Content-Type": "application/json" },
+  body : JSON.stringify(patchdata)
+})
+.then (respopatch => respopatch.json())
+.then(resopme  => {
+  showpatchresult.innerHTML = `this is patch request :<pre> ${JSON.stringify(resopme , null , 4)} </pre>`
+})
+.catch (error => {
+showpatchresult.innerHTML = `this is patchrequest error : <pre> ${JSON.stringify(error , null  ,4)}`
+})
+})
+
+const deltereqs = document.querySelector("#deltereqswas")
+const agewaint = document.querySelector("#agewaint")
+const submitdelte = document.querySelector("#submitdelte")
+const showdeletereq = document.querySelector("#showdeletereq")
+
+let uurldelet = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/delete"
+submitdelte.addEventListener("click", async () => {
+  let deltereqswas = deltereqs.value.trim();
+  let agewadeelete = agewaint.value.trim();
+
+  if (!deltereqswas || !agewadeelete) {
+    showdeletereq.innerHTML = "Please fill all the fields first";
+    return;
+  }
+
+  let ageNumber = parseInt(agewadeelete);
+  if (isNaN(ageNumber)) {
+    showdeletereq.innerHTML = "Please enter a valid number for age";
+    return;
+  }
+
+  let payloaddelte = { name: deltereqswas, age: ageNumber };
+
+  try {
+    let response = await fetch(uurldelet, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payloaddelte)
+    });
+
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      data = { message: "No JSON response" };
+    }
+
+    if (response.status === 200) {
+      showdeletereq.innerHTML = `<pre>DELETE success:\n${JSON.stringify(data, null, 4)}</pre>`;
+    } else {
+      showdeletereq.innerHTML = `<pre>DELETE failed:\n${JSON.stringify(data, null, 4)}</pre>`;
+    }
+  } catch (error) {
+    showdeletereq.innerHTML = `<pre>Error in DELETE request`
+  }
+});

@@ -302,7 +302,7 @@
 # server.py
 
 
-import requests
+# import requests
 
 # url = "https://api.freeapi.app/api/v1/public/randomusers"
 
@@ -342,25 +342,75 @@ import requests
 #     f.write(kyty)
 
 
+
+
+# url2 = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/post"
+
+# kyt = {
+#     "name" : "saransh" ,
+#     "rollno" : 12
+# }
+
+# response = requests.post(
+#     url2 ,
+#     headers={"Content-Type": "application/json"} ,
+#     data=json.dumps(kyt)
+# )
+# print(f"Status Code: {response.status_code}")
+
+# # Response ko JSON ke form me pretty print
+# print("Response JSON:")
+# print(json.dumps(response.json(), indent=4))
+
+# import json
+
+# ulrput = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/put"
+
+# k = input("enter your name")
+# uo = int(input("enter your age"))
+
+# putdata = {
+#     "name" : k ,
+#     "age" : uo
+# }
+
+# resnd = requests.put(
+#     ulrput  , 
+#     headers={"Content-Type": "application/json"} ,
+#     data=json.dumps(putdata)
+# )
+
+# print(json.dumps(resnd.json() , indent=4))
+
+
+
+import requests
 import json
 
-url2 = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/post"
+ky = input("enter your name")
+li = int(input("enter your name"))
+lu = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/patch"
 
-kyt = {
-    "name" : "saransh" ,
-    "rollno" : 12
+patchdata = {
+    "name" :  ky , 
+    "age" : li
 }
 
-response = requests.post(
-    url2 ,
-    headers={"Content-Type": "application/json"} ,
-    data=json.dumps(kyt)
-)
-print(f"Status Code: {response.status_code}")
-
-# Response ko JSON ke form me pretty print
-print("Response JSON:")
-print(json.dumps(response.json(), indent=4))
-
-
-
+try: 
+    respnd = requests.patch(
+        lu , 
+        headers= {"Content-Type" : "application/json"},
+        data=json.dumps(patchdata)
+    )
+    if respnd.status_code == 200:
+        kuy = json.dumps(respnd.json() , indent=4)
+        with open("output.json" , "w") as f:
+            f.write(kuy)
+    else: 
+        kuyyt = json.dumps(respnd.json() , indent=4)
+        with open("outpy.json" , "w") as h:
+            h.write(kuyyt)
+except requests.exceptions.RequestException as e :
+      kus = f"this is error is your code : , {json.dumps(e , indent=4)}"
+      with open("erroe.json" , "w") as df:
+          df.write(kus)
