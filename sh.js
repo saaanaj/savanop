@@ -749,3 +749,46 @@ submitBtnnby.addEventListener("click" , () => {
       shownrhenerror.innerHTML = `this is i am getting error <pre> ${JSON.stringify(err , null , 2)} </pre>`
   })
  })
+
+
+const nmeedit = document.querySelector("#nmeedit")
+const agewaput = document.querySelector("#gewaput")
+const submitwaput = document.querySelector("#submitwaput")
+const showpurest = document.querySelector("#showpurest")
+
+let urlput = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/put"
+
+
+
+submitwaput.addEventListener("click" , () => {
+
+
+let nameput = nmeedit.value.trim()
+let ageputu = agewaput.value.trim()
+
+if (!nameput || !ageputu ) {
+  showpurest.innerHTML = "please enter anyting bro "
+  return
+}
+
+let putdata = {
+  name: nameput , 
+  age : ageputu
+}
+
+fetch(urlput , {
+method : "PUT" ,
+headers : { "Content-Type": "application/json" }, 
+body : JSON.stringify(putdata)
+})
+.then(respe => respe.json())
+.then ( reslutput => {
+  showpurest.innerHTML = `this is my result sucess : <pre> ${JSON.stringify(reslutput , null , 4)} </pre>`
+  nmeedit.value = ""
+  agewaput.value = ""
+})
+
+.catch (error => {
+  showpurest.innerHTML = `this is error is show in your code ${JSON.stringify(error , null , 4)} `
+})
+})
