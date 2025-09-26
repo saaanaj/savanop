@@ -332,11 +332,6 @@ import requests
 #     print(f"this is error in your code {e}")
 
 
-import json
-
-url2 = "https://api.freeapi.app/api/v1/public/youtube/playlists/PLRAV69dS1uWSx4erHGq8hW_GE-Eaj60r-"
-
-
 # ktr = requests.get(url2)
 
 # uyr = ktr.json()
@@ -346,12 +341,23 @@ url2 = "https://api.freeapi.app/api/v1/public/youtube/playlists/PLRAV69dS1uWSx4e
 # with open("output.txt" , "w") as f:
 #     f.write(kyty)
 
-try: 
-    ktr = requests.get(url2)
-    upr = ktr.json()
-    kyty = json.dumps(upr , indent=6) 
-    with open("net.txt" , "w") as f:
-        f.write(kyty)
-except requests.exceptions.RequestException as e:
-    with open("error.txt" , "w") as f:
-        f.write(e)
+
+import json
+
+url2 = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/post"
+
+kyt = {
+    "name" : "saransh" ,
+    "rollno" : 12
+}
+
+response = requests.post(
+    url2 ,
+    headers={"Content-Type": "application/json"} ,
+    data=json.dumps(kyt)
+)
+print(f"Status Code: {response.status_code}")
+
+# Response ko JSON ke form me pretty print
+print("Response JSON:")
+print(json.dumps(response.json(), indent=4))
