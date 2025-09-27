@@ -384,33 +384,35 @@
 
 
 
-import requests
-import json
+# import requests
+# import json
 
-ky = input("enter your name")
-li = int(input("enter your name"))
-lu = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/patch"
+# ky = input("enter your name")
+# li = int(input("enter your name"))
+# lu = "https://api.freeapi.app/api/v1/kitchen-sink/http-methods/patch"
 
-patchdata = {
-    "name" :  ky , 
-    "age" : li
-}
+# patchdata = {
+#     "name" :  ky , 
+#     "age" : li
+# }
 
-try: 
-    respnd = requests.patch(
-        lu , 
-        headers= {"Content-Type" : "application/json"},
-        data=json.dumps(patchdata)
-    )
-    if respnd.status_code == 200:
-        kuy = json.dumps(respnd.json() , indent=4)
-        with open("output.json" , "w") as f:
-            f.write(kuy)
-    else: 
-        kuyyt = json.dumps(respnd.json() , indent=4)
-        with open("outpy.json" , "w") as h:
-            h.write(kuyyt)
-except requests.exceptions.RequestException as e :
-      kus = f"this is error is your code : , {json.dumps(e , indent=4)}"
-      with open("erroe.json" , "w") as df:
-          df.write(kus)
+# try: 
+#     respnd = requests.patch(
+#         lu , 
+#         headers= {"Content-Type" : "application/json"},
+#         data=json.dumps(patchdata)
+#     )
+#     if respnd.status_code == 200:
+#         kuy = json.dumps(respnd.json() , indent=4)
+#         with open("output.json" , "w") as f:
+#             f.write(kuy)
+#     else: 
+#         kuyyt = json.dumps(respnd.json() , indent=4)
+#         with open("outpy.json" , "w") as h:
+#             h.write(kuyyt)
+# except requests.exceptions.RequestException as e :
+#       kus = f"this is error is your code : , {json.dumps(e , indent=4)}"
+#       with open("erroe.json" , "w") as df:
+#           df.write(kus)
+
+

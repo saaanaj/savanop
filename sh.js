@@ -870,3 +870,125 @@ submitdelte.addEventListener("click", async () => {
     showdeletereq.innerHTML = `<pre>Error in DELETE request`
   }
 });
+
+
+const genertaepass = document.querySelector("#genertaepass");
+const submitwatogen = document.querySelector("#submitwatogen");
+const showinpytpasss = document.querySelector("#showinpytpasss");
+
+function generayepas(length = 8, chars = "abcdefghijklmnopqrstuvwxyz1234567890") {
+  let pass = "";
+  
+  // agar input box me value di hai toh usko use karo
+  let genLength = parseInt(genertaepass.value.trim()) || length;
+
+  for (let i = 0; i < genLength; i++) {
+    pass += chars[Math.floor(Math.random() * chars.length)];
+  }
+  
+  return pass;
+}
+
+// button click pe password generate
+submitwatogen.addEventListener("click", () => {
+  let password = generayepas();
+  showinpytpasss.value = password;   // ✅ abhi sahi hoga
+});
+
+
+const namewalogn = document.querySelector("#namewalogn");
+const logunpasswala = document.querySelector("#logunpasswala");
+const loginsubmitwa = document.querySelector("#loginsubmitwa");
+const showactionlog = document.querySelector("#showactionlog");
+const resetpassword = document.querySelector("#resetelh");
+const loginform = document.querySelector("#loginform");
+
+let dataforlogin = {
+  name: "saransh",
+  password: "kumar"
+};
+
+// Login function
+function logindata(name, password) {
+  if (name === dataforlogin.name && password === dataforlogin.password) {
+    showactionlog.innerHTML = `Login successful 😁`;
+  } else {
+    showactionlog.innerHTML = `Login failed 😭`;
+  }
+
+  namewalogn.value = "";
+  logunpasswala.value = "";
+}
+
+// Login button click
+loginsubmitwa.addEventListener("click", () => {
+  const putinlog = namewalogn.value.trim();
+  const putpasslog = logunpasswala.value.trim();
+
+  if (!putinlog && !putpasslog) {
+    showactionlog.innerHTML = `Name aur password dono daal phle 😅`;
+  } else if (!putinlog) {
+    showactionlog.innerHTML = `Name daal phle 😅`;
+  } else if (!putpasslog) {
+    showactionlog.innerHTML = `Password daal phle 😅`;
+  } else {
+    logindata(putinlog, putpasslog);
+  }
+});
+
+// Reset password button click
+resetpassword.addEventListener("click", () => {
+  // Remove the original reset button
+  // resetpassword.remove();
+
+  // Create div for inputs
+  const resetDiv = document.createElement("div");
+  resetDiv.id = "resetenegdDiv";
+  resetDiv.innerHTML = `
+    <input type="text" id="resetname" placeholder="Enter your name" style="display:block; margin:5px 0;">
+    <input type="password" id="resetoldpass" placeholder="Enter old password" style="display:block; margin:5px 0;">
+    <input type="password" id="resetnewpass" placeholder="Enter new password" style="display:block; margin:5px 0;">
+  `;
+
+  // Append the div to form
+  loginform.appendChild(resetDiv);
+
+  // Create new submit button
+  const submitResetBtn = document.createElement("button");
+  submitResetBtn.id = "submitResetBtn";
+  submitResetBtn.innerHTML = "Submit New Password";
+  submitResetBtn.style.display = "block";
+  submitResetBtn.style.marginTop = "5px";
+
+  loginform.appendChild(submitResetBtn);
+
+  // Click event for submit button
+  submitResetBtn.addEventListener("click", () => {
+    const nameInput = document.querySelector("#resetname").value.trim();
+    const oldPassInput = document.querySelector("#resetoldpass").value.trim();
+    const newPassInput = document.querySelector("#resetnewpass").value.trim();
+
+    if (nameInput === dataforlogin.name && oldPassInput === dataforlogin.password) {
+      dataforlogin.password = newPassInput;
+
+      // Clear inputs and remove reset div + submit button
+      resetDiv.remove();
+      submitResetBtn.remove();
+
+      // Show success message
+      showactionlog.innerHTML = `Your password has been changed! New password: ${newPassInput}`;
+
+      // Clear login inputs
+      namewalogn.value = "";
+      logunpasswala.value = "";
+
+      // Remove message after 5 seconds
+      setTimeout(() => {
+        showactionlog.innerHTML = "";
+      }, 5000);
+
+    } else {
+      showactionlog.innerHTML = `Check your name and old password 😅`;
+    }
+  });
+});
