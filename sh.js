@@ -896,6 +896,7 @@ submitwatogen.addEventListener("click", () => {
 });
 
 
+
 const namewalogn = document.querySelector("#namewalogn");
 const logunpasswala = document.querySelector("#logunpasswala");
 const loginsubmitwa = document.querySelector("#loginsubmitwa");
@@ -946,8 +947,8 @@ resetpassword.addEventListener("click", () => {
   resetDiv.id = "resetenegdDiv";
   resetDiv.innerHTML = `
     <input type="text" id="resetname" placeholder="Enter your name" style="display:block; margin:5px 0;">
-    <input type="password" id="resetoldpass" placeholder="Enter old password" style="display:block; margin:5px 0;">
-    <input type="password" id="resetnewpass" placeholder="Enter new password" style="display:block; margin:5px 0;">
+    <input type="text" id="resetoldpass" placeholder="Enter old password" style="display:block; margin:5px 0;">
+    <input type="text" id="resetnewpass" placeholder="Enter new password" style="display:block; margin:5px 0;">
   `;
 
   // Append the div to form
